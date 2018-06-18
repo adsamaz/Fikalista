@@ -18,10 +18,10 @@ payload = {'Content-Type': 'application/json', 'text': 'Testing testing :tada:'}
 # POST with JSON
 
 while True:
-    #r = requests.post(url, data=json.dumps(payload))
+    r = requests.post(url, data=json.dumps(payload))
     print("Sent message")
-    #print(r.text)
-    #print(r.status_code)
+    print(r.text)
+    print(r.status_code)
     time.sleep(20) # Delay for 20 seconds
     
 
