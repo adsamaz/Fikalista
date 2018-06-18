@@ -12,7 +12,7 @@ a = True
 #r = requests.get(url, params=payload)
 
 # POST with form-encoded data
-#r = requests.post(url, data=payload)
+#r = requests.post(url, data=paylo  ad)
 
 # POST with JSON
 
