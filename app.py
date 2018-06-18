@@ -17,10 +17,13 @@ a = True
 # POST with JSON
 
 if a:
-    r = requests.post(url, data=json.dumps(payload))
+    #r = requests.post(url, data=json.dumps(payload))
     a = False
     # Response, status etc
-    print(r.text)
-    print(r.status_code)
+    #print(r.text)
+    #print(r.status_code)
+    print(Hello World)
+
+print(Hello World 2)
 
 
