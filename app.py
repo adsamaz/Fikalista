@@ -6,7 +6,6 @@ import time
 url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
 payload = {'Content-Type': 'application/json', 'text': 'Testing testing :tada:'}
 
-a = True
 # GET
 #r = requests.get(url)
 
@@ -18,15 +17,11 @@ a = True
 
 # POST with JSON
 
-if a:
-    #r = requests.post(url, data=json.dumps(payload))
-    a = False
-    # Response, status etc
-    #print(r.text)
-    #print(r.status_code)
-    print("Hello World")
-
 while True:
-    print("Hello World")
-    time.sleep(5) # Delay for 1 minute (60 seconds).
+    r = requests.post(url, data=json.dumps(payload))
+    print("Sent message")
+    print(r.text)
+    print(r.status_code)
+    time.sleep(20) # Delay for 20 seconds
+    
 
