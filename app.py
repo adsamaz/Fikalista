@@ -1,6 +1,8 @@
 import requests
 import json
 
+import time
+
 url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
 payload = {'Content-Type': 'application/json', 'text': 'Testing testing :tada:'}
 
@@ -24,6 +26,7 @@ if a:
     #print(r.status_code)
     print("Hello World")
 
-print("Hello World 2")
-
+while True:
+    print("Hello World")
+    time.sleep(5) # Delay for 1 minute (60 seconds).
 
