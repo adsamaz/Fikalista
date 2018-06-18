@@ -22,8 +22,8 @@ if a:
     # Response, status etc
     #print(r.text)
     #print(r.status_code)
-    print(Hello World)
+    print("Hello World")
 
-print(Hello World 2)
+print("Hello World 2")
 
 
