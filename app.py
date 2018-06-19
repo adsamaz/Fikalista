@@ -19,14 +19,14 @@ fridayDone = False
 while True:
     now = datetime.datetime.now()
 
-    if now.weekday() == 1 and now.strftime("%H:%M") == "10:43" and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
+    if now.weekday() == 1 and now.strftime("%H:%M") == "11:00" and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
         file = open("namnlista", "r", encoding="utf-8-sig")
         names = file.readlines()
         file.close()
 
         currentName = names[currentNum]
 
-        payload = {'Content-Type': 'application/json', 'username': 'FikaBot', 'icon_url': 'https://www.flickr.com/photos/rinses/3560798480', 'text': '<!all> ' + currentName + ' är fikaansvarig denna vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
+        payload = {'Content-Type': 'application/json', 'text': '<!all> ' + currentName + ' är fikaansvarig denna vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
         request = requests.post(url, data=json.dumps(payload))  #Send message to Mattermost
         print("Monday message sent: " + request.text)
         wednesdayDone = True
@@ -45,7 +45,7 @@ while True:
         currentName = names[currentNum]     #Fikapersonen for next week
 
 
-        payload = {'Content-Type': 'application/json', 'username': 'FikaBot', 'icon_url': 'https://www.flickr.com/photos/rinses/3560798480', 'text': currentName + ' är fikaansvarig nästa vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
+        payload = {'Content-Type': 'application/json', 'text': currentName + ' är fikaansvarig nästa vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
         request = requests.post(url, data=json.dumps(payload))  #Send message   to Mattermost
         print("Friday message sent: " + request.text)
         wednesdayDone = False
