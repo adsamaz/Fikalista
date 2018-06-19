@@ -19,8 +19,8 @@ fridayDone = False
 while True:
     now = datetime.datetime.now()
     print("HEJ")
-    if now.weekday() == 1 and now.strftime("%H:%M") == "09:30" and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
-        print("Monday message sent: " + request.text)
+    if now.weekday() == 1 and now.strftime("%H:%M") == "10:05:" and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
+        print("YEA BOI")
         file = open("namnlista", "r", encoding="utf-8-sig")
         names = file.readlines()
         file.close()
@@ -29,7 +29,7 @@ while True:
 
         payload = {'Content-Type': 'application/json', 'text': '<!all> ' + currentName + ' är fikaansvarig denna vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
         request = requests.post(url, data=json.dumps(payload))  #Send message to Mattermost
-        print("Monday message sent: " + request.text)
+        print("Wednesday message sent: " + request.text)
         wednesdayDone = True
         fridayDone = False
 
