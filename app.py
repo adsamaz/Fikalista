@@ -9,8 +9,8 @@ import time
 # GET with params in URL
 # r = requests.get(url, params=payload)
 
-#url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
-url = 'http://172.17.228.214:8065/hooks/zp9hbdpunirdpr1dqgjbiud8ow'
+url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
+#url = 'http://172.17.228.214:8065/hooks/zp9hbdpunirdpr1dqgjbiud8ow'
 currentNum = 6      #Change this number on restart
 now = datetime.datetime.now()
 wednesdayDone = False
@@ -19,9 +19,8 @@ fridayDone = False
 while True:
     now = datetime.datetime.now()
     print("HEJ")
-    #and now.strftime("%H:%M") == "10:05:"
-    if now.weekday() == 1 and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
-        print("YEA BOI")
+    
+    if now.weekday() == 2 and now.strftime("%H:%M") == "10:00" and not wednesdayDone:  # On wednesday 10:00, print the current fikaperson
         file = open("namnlista", "r", encoding="utf-8-sig")
         names = file.readlines()
         file.close()
@@ -48,7 +47,7 @@ while True:
 
 
         payload = {'Content-Type': 'application/json', 'text': currentName + ' är fikaansvarig nästa vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
-        request = requests.post(url, data=json.dumps(payload))  #Send message   to Mattermost
+        request = requests.post(url, data=json.dumps(payload))  #Send message to Mattermost
         print("Friday message sent: " + request.text)
         wednesdayDone = False
         fridayDone = True
