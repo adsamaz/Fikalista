@@ -9,7 +9,8 @@ import time
 # GET with params in URL
 # r = requests.get(url, params=payload)
 
-url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
+#url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
+url = 'http://localhost:8065/hooks/zp9hbdpunirdpr1dqgjbiud8ow'
 currentNum = 6      #Change this number on restart
 now = datetime.datetime.now()
 wednesdayDone = False
