@@ -18,7 +18,6 @@ fridayDone = False
 
 while True:
     now = datetime.datetime.now()
-    print("HEJ")
     
     if now.weekday() == 2 and now.strftime("%H:%M") == "10:00" and not wednesdayDone:  # On wednesday 10:00, print the current fikaperson
         file = open("namnlista", "r", encoding="utf-8-sig")
