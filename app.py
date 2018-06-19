@@ -19,7 +19,7 @@ fridayDone = False
 while True:
     now = datetime.datetime.now()
 
-    if now.weekday() == 1 and now.strftime("%H:%M") == "11:00" and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
+    if now.weekday() == 1 and now.strftime("%H:%M") == "11:03" and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
         file = open("namnlista", "r", encoding="utf-8-sig")
         names = file.readlines()
         file.close()
