@@ -1,27 +1,53 @@
 import requests
 import json
-
+import datetime
 import time
 
-url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
-payload = {'Content-Type': 'application/json', 'text': 'Testing testing :tada:'}
-
 # GET
-#r = requests.get(url)
+# r = requests.get(url)
 
 # GET with params in URL
-#r = requests.get(url, params=payload)
+# r = requests.get(url, params=payload)
 
-# POST with form-encoded data
-#r = requests.post(url, data=paylo  ad)
-
-# POST with JSON
+url = 'http://chatt.sfa.se/hooks/4o1sdns6qj8z7b37xtfmrgwxuy'
+currentNum = 6      #Change this number on restart
+now = datetime.datetime.now()
+wednesdayDone = False
+fridayDone = False
 
 while True:
-    r = requests.post(url, data=json.dumps(payload))
-    print("Sent message")
-    print(r.text)
-    print(r.status_code)
-    time.sleep(20) # Delay for 20 seconds
-    
+    now = datetime.datetime.now()
 
+    if now.weekday() == 0 and now.strftime("%H:%M") == "09:00" and not wednesdayDone:  # On wednesday 09:00, print the current fikaperson
+        file = open("namnlista", "r", encoding="utf-8-sig")
+        names = file.readlines()
+        file.close()
+
+        currentName = names[currentNum]
+
+        payload = {'Content-Type': 'application/json', 'username': 'FikaBot', 'icon_url': 'https://www.flickr.com/photos/rinses/3560798480', 'text': '<!all> ' + currentName + ' är fikaansvarig denna vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
+        request = requests.post(url, data=json.dumps(payload))  #Send message to Mattermost
+        print("Monday message sent: " + request.text)
+        wednesdayDone = True
+        fridayDone = False
+
+
+    elif now.weekday() == 4 and now.strftime("%H:%M") == "14:00" and not fridayDone:  # On friday 14:00, print the upcomming fikaperson
+        file = open("namnlista", "r", encoding="utf-8-sig")
+        names = file.readlines()
+        file.close()
+        if currentNum >= len(names) - 1:    #Reset counter if previous preson was the last one in file
+            currentNum = 0
+        else:
+            currentNum += 1
+
+        currentName = names[currentNum]     #Fikapersonen for next week
+
+
+        payload = {'Content-Type': 'application/json', 'username': 'FikaBot', 'icon_url': 'https://www.flickr.com/photos/rinses/3560798480', 'text': currentName + ' är fikaansvarig nästa vecka :cake: Hela fikalistan finns <http://confluence.sfa.se/display/VER/Fikalista/|här> '}
+        request = requests.post(url, data=json.dumps(payload))  #Send message   to Mattermost
+        print("Friday message sent: " + request.text)
+        wednesdayDone = False
+        fridayDone = True
+
+    time.sleep(60)
